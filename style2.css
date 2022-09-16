@@ -1,11 +1,11 @@
 body{
   margin: 0;
   padding: 0;
-  background: url(images/bg.jpg) no-repeat;
+  background: url(images/bg2.jpg) no-repeat;
   background-size: cover;
 }
 .box{
-  width: 450px;
+  width: 80%;
   background: rgba(0, 0, 0, 0.4);
   padding: 40px;
   text-align: center;
@@ -31,6 +31,7 @@ body{
   padding:0;
 }
 .box p{
+font-size: 20px;
   text-align: justify;
 }
 
@@ -39,9 +40,9 @@ ul{
   padding: 0;
 }
 .box li{
-  display: inline-block;
+  display: list-item;
   margin: 6px;
-  list-style: none;
+  list-style: circle;
 }
 
 /* Add a black background color to the top navigation */
