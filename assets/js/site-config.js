@@ -6,7 +6,7 @@
 window.SITE_CONFIG = {
   name: "Rukesh Prajapati",
   shortName: "RP",
-  role: "PhD Candidate /n PIT Lead (ECOCAR Innovation Challenge)",
+  role: "PhD Candidate<br>PIT Lead <span class=\"role-secondary\">(EcoCAR Innovation Challenge)</span>",
   affiliation: "West Virginia University",
   location: "Morgantown, WV",
   email: "prajapati.rukesh101@gmail.com",

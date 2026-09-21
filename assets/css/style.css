@@ -386,3 +386,8 @@ main {
 .news-link a:hover {
     text-decoration: underline;
 }
+
+.role-secondary {
+    font-size: 0.85em;
+    font-weight: 600;
+}

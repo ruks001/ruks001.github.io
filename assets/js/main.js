@@ -1,12 +1,21 @@
 (function () {
   const config = window.SITE_CONFIG || {};
 
-  document.querySelectorAll("[data-config]").forEach((el) => {
-    const key = el.getAttribute("data-config");
-    if (Object.prototype.hasOwnProperty.call(config, key)) {
-      el.textContent = config[key];
+  document.querySelectorAll("[data-config]").forEach(function (element) {
+
+    const key = element.getAttribute("data-config");
+
+    if (!window.SITE_CONFIG[key]) {
+        return;
     }
-  });
+
+    if (key === "role") {
+        element.innerHTML = window.SITE_CONFIG[key];
+    } else {
+        element.textContent = window.SITE_CONFIG[key];
+    }
+
+});
 
   document.querySelectorAll("[data-config-href]").forEach((el) => {
     const key = el.getAttribute("data-config-href");
