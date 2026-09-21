@@ -1,12 +1,218 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Research projects and directions"><title>Research | Academic Robotics Portfolio</title><link rel="stylesheet" href="assets/css/style.css"><script defer src="assets/js/site-config.js"></script><script defer src="assets/js/main.js"></script></head><body>
-<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark" data-config="shortName">YN</span><span data-config="name">Your Name</span></a><button class="menu-button" aria-label="Open navigation" aria-expanded="false">☰</button><nav class="site-nav"><a href="index.html">Home</a><a class="active" href="research.html">Research</a><a href="publications.html">Publications</a><a href="cv.html">CV</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav></div></header>
-<main><div class="page-heading"><span class="kicker">Research</span><h1>Research & Projects</h1><p>Use this page to explain your research areas and selected technical projects in more depth. The card layout keeps each topic visually separate without turning the website into a dashboard.</p></div>
-<div class="research-grid">
-<article class="card research-card"><span class="tag">Research Direction</span><h2>Robotic Perception</h2><p>Describe the perception problem you work on, the sensing modalities you use, and why the problem matters for autonomous robots.</p><div class="placeholder-note">Suggested additions: representative figure, methods, datasets, hardware platform, paper/project links.</div></article>
-<article class="card research-card"><span class="tag">Research Direction</span><h2>Autonomous Navigation</h2><p>Describe your work on localization, planning, control, decision-making, or complete robot navigation pipelines.</p><div class="placeholder-note">Suggested additions: robot platform, navigation stack, real-world deployment, quantitative results.</div></article>
-<article class="card research-card"><span class="tag">Research Direction</span><h2>Embodied / Multimodal AI</h2><p>Describe research involving vision-language models, vision-language-action models, multimodal reasoning, or learning-based robot decision making.</p><div class="placeholder-note">Suggested additions: model architecture, action space, reasoning setup, deployment constraints.</div></article>
-<article class="card research-card"><span class="tag">Research Direction</span><h2>Simulation & Sim-to-Real</h2><p>Describe how simulation, synthetic data, domain adaptation, reinforcement learning, or transfer learning fits into your research.</p><div class="placeholder-note">Suggested additions: simulator names, transfer strategy, real-world evaluation, project repository.</div></article>
-<article class="card research-card"><span class="tag">Selected Project</span><h2>Project Title</h2><p>Write a short problem → approach → outcome summary. Keep the project description understandable to both robotics researchers and broader engineering audiences.</p><div class="placeholder-note">Suggested links: Code · Paper · Video · Demo</div></article>
-<article class="card research-card"><span class="tag">Selected Project</span><h2>Project Title</h2><p>Use project cards for work that deserves more attention than a single CV bullet, including deployed systems, competition work, or collaborative research.</p><div class="placeholder-note">Duplicate or remove cards as needed.</div></article>
-</div></main>
-<footer class="site-footer"><div class="footer-wrap"><span>© <span data-current-year></span> <span data-config="name">Your Name</span></span><span data-config="footerLine">Robotics · Autonomous Systems · Computer Vision · Embodied AI</span></div></footer></body></html>
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <meta name="description"
+          content="Research projects and directions">
+
+    <title>
+        Research | Academic Robotics Portfolio
+    </title>
+
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet"
+          href="assets/css/style.css">
+
+
+    <!-- Basic site information -->
+    <script defer
+            src="assets/js/site-config.js">
+    </script>
+
+
+    <!-- Research data -->
+    <script defer
+            src="assets/js/research.js">
+    </script>
+
+
+    <!-- Main site functionality -->
+    <script defer
+            src="assets/js/main.js">
+    </script>
+
+
+    <!-- Research page renderer -->
+    <script defer
+            src="assets/js/research-render.js">
+    </script>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="site-header">
+
+    <div class="nav-wrap">
+
+
+        <a class="brand"
+           href="index.html">
+
+            <span class="brand-mark"
+                  data-config="shortName">
+
+                YN
+
+            </span>
+
+            <span data-config="name">
+
+                Your Name
+
+            </span>
+
+        </a>
+
+
+        <button class="menu-button"
+                aria-label="Open navigation"
+                aria-expanded="false">
+
+            ☰
+
+        </button>
+
+
+        <nav class="site-nav"
+             aria-label="Main navigation">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a class="active"
+               href="research.html">
+
+                Research
+
+            </a>
+
+            <a href="publications.html">
+                Publications
+            </a>
+
+            <a href="cv.html">
+                CV
+            </a>
+
+            <a href="news.html">
+                News
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+     ========================================================= -->
+
+<main>
+
+
+    <!-- =====================================================
+         PAGE HEADING
+         ===================================================== -->
+
+    <div class="page-heading">
+
+        <span class="kicker">
+            Research
+        </span>
+
+        <h1>
+            Research & Projects
+        </h1>
+
+        <p>
+            My research focuses on intelligent robotic systems,
+            autonomous perception, navigation, multimodal reasoning,
+            and learning-based decision-making.
+        </p>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         RESEARCH CARDS
+
+         These are generated automatically from:
+
+         assets/js/research.js
+
+         using:
+
+         assets/js/research-render.js
+         ===================================================== -->
+
+    <div id="full-research-list"
+         class="research-grid">
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-wrap">
+
+
+        <span>
+
+            ©
+            <span data-current-year></span>
+
+            <span data-config="name">
+                Your Name
+            </span>
+
+        </span>
+
+
+        <span data-config="footerLine">
+
+            Robotics · Autonomous Systems ·
+            Computer Vision · Embodied AI
+
+        </span>
+
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>

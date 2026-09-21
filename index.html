@@ -1,29 +1,190 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Academic robotics research portfolio template"><title>Home | Academic Robotics Portfolio</title><link rel="stylesheet" href="assets/css/style.css"><script defer src="assets/js/site-config.js"></script><script defer src="assets/js/main.js"></script></head><body>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Academic robotics research portfolio template"><title>Home | Academic Robotics Portfolio</title><link rel="stylesheet" href="assets/css/style.css"><script defer src="assets/js/site-config.js"></script><script defer src="assets/js/news.js"></script><script defer src="assets/js/research.js"></script><script defer src="assets/js/main.js"></script></head><body><script defer src="assets/js/news-render.js"></script><script defer src="assets/js/research-render.js"></script>
 <header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark" data-config="shortName">YN</span><span data-config="name">Your Name</span></a><button class="menu-button" aria-label="Open navigation" aria-expanded="false">☰</button><nav class="site-nav" aria-label="Main navigation"><a class="active" href="index.html">Home</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="cv.html">CV</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav></div></header>
 <main>
   <div class="home-grid">
     <aside class="stack">
       <section class="card profile-card">
-        <div class="profile-top"></div>
-        <div class="card-body">
-          <!-- Replace this placeholder with <img class="avatar-placeholder" src="assets/images/profile.jpg" alt="Your Name"> if you want a photo. -->
-          <div class="avatar-placeholder" data-config="shortName">YN</div>
-          <h1 data-config="name">Your Name</h1>
-          <p class="profile-role" data-config="role">Robotics Researcher</p>
-          <p class="profile-affiliation" data-config="affiliation">University / Lab / Organization</p>
-          <div class="meta-list"><div class="meta-item"><span class="meta-icon">⌖</span><span data-config="location">City, State / Country</span></div><div class="meta-item"><span class="meta-icon">@</span><a data-config="email" data-config-href="email">your.email@example.com</a></div></div>
-          <div class="social-row"><a class="icon-button" data-config-href="github" target="_blank" rel="noreferrer">GitHub</a><a class="icon-button" data-config-href="linkedin" target="_blank" rel="noreferrer">LinkedIn</a><a class="icon-button" data-config-href="scholar" target="_blank" rel="noreferrer">Scholar</a></div>
-        </div>
-      </section>
+
+  <div class="profile-top"></div>
+
+  <div class="card-body">
+
+    <img class="profile-image"
+         src="assets/files/profile.jpg"
+         alt="Rukesh Prajapati">
+
+    <h1 data-config="name">Your Name</h1>
+
+    <p class="profile-role"
+       data-config="role">
+      Robotics Researcher
+    </p>
+
+    <p class="profile-affiliation"
+       data-config="affiliation">
+      University / Lab / Organization
+    </p>
+
+    <div class="meta-list">
+
+      <div class="meta-item">
+        <span class="meta-icon">⌖</span>
+        <span data-config="location">
+          City, State / Country
+        </span>
+      </div>
+
+      <div class="meta-item">
+        <span class="meta-icon">@</span>
+        <a data-config="email"
+           data-config-href="email">
+          your.email@example.com
+        </a>
+      </div>
+
+    </div>
+
+    <div class="social-row">
+
+      <a class="icon-button"
+         data-config-href="github"
+         target="_blank"
+         rel="noreferrer">
+        GitHub
+      </a>
+
+      <a class="icon-button"
+         data-config-href="linkedin"
+         target="_blank"
+         rel="noreferrer">
+        LinkedIn
+      </a>
+
+      <a class="icon-button"
+         data-config-href="scholar"
+         target="_blank"
+         rel="noreferrer">
+        Scholar
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
     </aside>
 
     <div class="stack">
-      <section class="card hero-card"><div class="card-body"><span class="kicker">Robotics · Autonomous Systems</span><h2>Short statement about the kind of intelligent robotic systems you build.</h2><p>Use this area for a concise research introduction. Describe your broad research direction, the problems you care about, and the connection between perception, decision-making, planning, learning, or deployment in real robotic systems.</p><div class="hero-actions"><a class="button primary" href="research.html">Explore research</a><a class="button" href="publications.html">Publications</a><a class="button" href="cv.html">Curriculum Vitae</a></div></div></section>
+      <section class="card hero-card">
 
-      <section class="card"><div class="card-body"><div class="section-header"><h2>Research focus</h2><a href="research.html">View all →</a></div><div class="card-grid"><article class="mini-card"><span class="number">01</span><h3>Research Area One</h3><p>One or two sentences describing a main research direction, such as robotic perception or computer vision.</p></article><article class="mini-card"><span class="number">02</span><h3>Research Area Two</h3><p>Describe another direction, such as autonomous navigation, planning, control, or sim-to-real learning.</p></article><article class="mini-card"><span class="number">03</span><h3>Research Area Three</h3><p>Describe an emerging direction, such as multimodal reasoning, VLM/VLA systems, or embodied AI.</p></article></div></div></section>
+  <div class="card-body">
 
-      <section class="card"><div class="card-body"><div class="section-header"><h2>Recent news</h2><a href="news.html">All news →</a></div><div class="news-list"><div class="news-row"><div class="news-date">Month YYYY</div><p>Short announcement about a publication, award, talk, project milestone, internship, or research update.</p></div><div class="news-row"><div class="news-date">Month YYYY</div><p>Another brief update. Keep homepage news short; the News page can contain the full archive.</p></div><div class="news-row"><div class="news-date">Month YYYY</div><p>Optional third update or remove this row if you prefer a more minimal homepage.</p></div></div></div></section>
+    <span class="kicker">
+      Robotics · Autonomous Systems
+    </span>
+
+    <h2>
+      Ph.D. Researcher in Robotics, Autonomous Systems, and Computer Vision
+    </h2>
+
+    <p>
+      I am a Ph.D. student in Computer Engineering at West Virginia
+      University with research and industry experience in computer vision,
+      robotics, autonomous systems, and deep learning. My work focuses on
+      perception for robotics and autonomous driving, including real-time
+      vision pipelines, scene understanding, and intelligent decision-making.
+    </p>
+
+    <p>
+      I also work with vision-language models (VLMs) and
+      vision-language-action (VLA) frameworks for robotic decision-making,
+      along with integrated robotic systems combining perception,
+      localization, and trajectory planning.
+    </p>
+
+    <div class="hero-actions">
+
+      <a class="button primary"
+         href="research.html">
+        Explore research
+      </a>
+
+      <a class="button"
+         href="publications.html">
+        Publications
+      </a>
+
+      <a class="button"
+         href="cv.html">
+        Curriculum Vitae
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+      <section class="card">
+
+    <div class="card-body">
+
+        <div class="section-header">
+
+            <h2>
+                Research focus
+            </h2>
+
+            <a href="research.html">
+                View all →
+            </a>
+
+        </div>
+
+
+        <!--
+            Research areas are automatically inserted
+            from assets/js/research.js
+        -->
+
+        <div class="card-grid"
+             id="homepage-research">
+        </div>
+
+    </div>
+
+</section>
+
+      <section class="card">
+
+    <div class="card-body">
+
+        <div class="section-header">
+
+            <h2>
+                Recent news
+            </h2>
+
+            <a href="news.html">
+                All news →
+            </a>
+
+        </div>
+
+
+        <!--
+            Latest 3 news items are inserted automatically
+            from assets/data/news.js
+        -->
+
+        <div class="news-list"
+             id="homepage-news-list">
+        </div>
+
+    </div>
+
+</section>
     </div>
   </div>
 </main>

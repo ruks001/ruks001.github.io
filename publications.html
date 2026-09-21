@@ -1,10 +1,1431 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Academic publications"><title>Publications | Academic Robotics Portfolio</title><link rel="stylesheet" href="assets/css/style.css"><script defer src="assets/js/site-config.js"></script><script defer src="assets/js/main.js"></script></head><body>
-<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark" data-config="shortName">YN</span><span data-config="name">Your Name</span></a><button class="menu-button" aria-label="Open navigation" aria-expanded="false">☰</button><nav class="site-nav"><a href="index.html">Home</a><a href="research.html">Research</a><a class="active" href="publications.html">Publications</a><a href="cv.html">CV</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav></div></header>
-<main><div class="page-heading"><span class="kicker">Scholarship</span><h1>Publications</h1><p>Keep your complete publication record here. A chronological list is easier to scan than putting every paper on the homepage. You can add DOI, PDF, code, video, and project links for each paper.</p></div>
-<div class="callout" style="margin-bottom:18px">Tip: bold your own name in the author list and use short venue labels. You can group papers by year or by type if your list becomes long.</div>
-<section class="pub-list">
-<article class="card pub-item"><div class="pub-meta">YYYY · Journal / Conference</div><h2>Publication title goes here</h2><p><strong>Your Name</strong>, Coauthor One, Coauthor Two. Add the venue, volume/pages if appropriate, and a one-line note only when useful.</p><div class="pub-links"><span class="text-chip">PDF</span><span class="text-chip">DOI</span><span class="text-chip">Code</span><span class="text-chip">Project</span></div></article>
-<article class="card pub-item"><div class="pub-meta">YYYY · Journal / Conference</div><h2>Publication title goes here</h2><p><strong>Your Name</strong>, Coauthor One, Coauthor Two. Replace this placeholder with the exact citation or a clean abbreviated citation.</p><div class="pub-links"><span class="text-chip">PDF</span><span class="text-chip">DOI</span></div></article>
-<article class="card pub-item"><div class="pub-meta">YYYY · Under Review / Preprint</div><h2>Manuscript or preprint title goes here</h2><p>Use a clear status label for work that is under review, accepted, in press, or available as a preprint.</p><div class="pub-links"><span class="text-chip">Preprint</span><span class="text-chip">Code</span></div></article>
-</section></main>
-<footer class="site-footer"><div class="footer-wrap"><span>© <span data-current-year></span> <span data-config="name">Your Name</span></span><span data-config="footerLine">Robotics · Autonomous Systems · Computer Vision · Embodied AI</span></div></footer></body></html>
+<!doctype html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <meta name="description"
+          content="Academic publications">
+
+    <title>
+        Publications | Academic Robotics Portfolio
+    </title>
+
+
+    <!-- =====================================================
+         Main website CSS
+         ===================================================== -->
+
+    <link rel="stylesheet"
+          href="assets/css/style.css">
+
+
+    <!-- =====================================================
+         Website configuration
+
+         Contains:
+         - Name
+         - Initials
+         - Institution
+         - Social links
+         - Footer text
+         ===================================================== -->
+
+    <script defer
+            src="assets/js/site-config.js">
+    </script>
+
+
+    <!-- =====================================================
+         Main website JavaScript
+
+         Used for:
+         - Navigation
+         - Mobile menu
+         - Current year
+         - SITE_CONFIG values
+         ===================================================== -->
+
+    <script defer
+            src="assets/js/main.js">
+    </script>
+
+
+    <!-- =====================================================
+         BibTeX Parser
+
+         Reads publications.bib and converts
+         BibTeX entries to JavaScript objects.
+         ===================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bibtex-parse-js@0.0.24/bibtexParse.min.js">
+    </script>
+
+
+    <!-- =====================================================
+         Publication-page-specific styling
+
+         These styles supplement style.css while preserving
+         the visual format of the original website.
+         ===================================================== -->
+
+    <style>
+
+        /* -----------------------------------------------------
+           Publication year heading
+           ----------------------------------------------------- */
+
+        .publication-year {
+
+            margin-top: 44px;
+            margin-bottom: 18px;
+
+            font-size: 1.55rem;
+            font-weight: 700;
+
+            letter-spacing: -0.02em;
+
+        }
+
+
+        .publication-year:first-child {
+
+            margin-top: 0;
+
+        }
+
+
+        /* -----------------------------------------------------
+           Publication card
+           ----------------------------------------------------- */
+
+        .pub-item {
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .pub-item h2 {
+
+            margin-top: 8px;
+            margin-bottom: 10px;
+
+            font-size: 1.12rem;
+            line-height: 1.45;
+
+        }
+
+
+        /* -----------------------------------------------------
+           Authors
+           ----------------------------------------------------- */
+
+        .publication-authors {
+
+            margin-top: 0;
+            margin-bottom: 6px;
+
+            line-height: 1.65;
+
+        }
+
+
+        /* -----------------------------------------------------
+           Journal / conference
+           ----------------------------------------------------- */
+
+        .publication-venue {
+
+            margin-top: 4px;
+            margin-bottom: 0;
+
+            line-height: 1.6;
+
+            opacity: 0.80;
+
+        }
+
+
+        /* -----------------------------------------------------
+           Publication links
+           ----------------------------------------------------- */
+
+        .pub-links {
+
+            display: flex;
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-top: 16px;
+
+        }
+
+
+        .pub-links .text-chip {
+
+            text-decoration: none;
+
+            transition:
+                transform 0.15s ease,
+                opacity 0.15s ease;
+
+        }
+
+
+        .pub-links .text-chip:hover {
+
+            transform: translateY(-1px);
+
+            opacity: 0.8;
+
+        }
+
+
+        /* -----------------------------------------------------
+           Loading / error message
+           ----------------------------------------------------- */
+
+        #publication-loading {
+
+            margin-bottom: 20px;
+
+        }
+
+
+        /* -----------------------------------------------------
+           Publication count
+           ----------------------------------------------------- */
+
+        .publication-summary {
+
+            margin-top: -5px;
+            margin-bottom: 25px;
+
+            font-size: 0.92rem;
+
+            opacity: 0.7;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
+
+<header class="site-header">
+
+    <div class="nav-wrap">
+
+
+        <!-- Website Name -->
+
+        <a class="brand"
+           href="index.html">
+
+            <span class="brand-mark"
+                  data-config="shortName">
+
+                YN
+
+            </span>
+
+            <span data-config="name">
+
+                Your Name
+
+            </span>
+
+        </a>
+
+
+        <!-- Mobile Navigation Button -->
+
+        <button class="menu-button"
+                aria-label="Open navigation"
+                aria-expanded="false">
+
+            ☰
+
+        </button>
+
+
+        <!-- Navigation -->
+
+        <nav class="site-nav">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="research.html">
+                Research
+            </a>
+
+            <a class="active"
+               href="publications.html">
+
+                Publications
+
+            </a>
+
+            <a href="cv.html">
+                CV
+            </a>
+
+            <a href="news.html">
+                News
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </nav>
+
+
+    </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+     ========================================================= -->
+
+<main>
+
+
+    <!-- =====================================================
+         PAGE HEADING
+         ===================================================== -->
+
+    <div class="page-heading">
+
+<!--        <span class="kicker">-->
+
+<!--            Scholarship-->
+
+<!--        </span>-->
+
+
+        <h1>
+
+            Publications
+
+        </h1>
+
+
+<!--        <p>-->
+
+<!--            Journal articles, conference papers, and research-->
+<!--            manuscripts. Publications are organized-->
+<!--            chronologically and generated automatically from-->
+<!--            a BibTeX database.-->
+
+<!--        </p>-->
+
+    </div>
+
+
+
+    <!-- =====================================================
+         OPTIONAL INFORMATION BOX
+
+         Same style as the previous version.
+         Remove this box later if you do not want it.
+         ===================================================== -->
+
+<!--    <div class="callout"-->
+<!--         style="margin-bottom: 18px;">-->
+
+<!--        Publication records on this page are generated from-->
+<!--        <code>assets/files/publications.bib</code>.-->
+<!--        PDF, DOI, code, project, and video links are displayed-->
+<!--        automatically when they are available.-->
+
+<!--    </div>-->
+
+
+
+    <!-- =====================================================
+         LOADING MESSAGE
+         ===================================================== -->
+
+    <div id="publication-loading"
+         class="callout">
+
+        Loading publications...
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PUBLICATION COUNT
+
+         JavaScript fills this automatically.
+         ===================================================== -->
+
+    <div id="publication-summary"
+         class="publication-summary"
+         style="display: none;">
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PUBLICATIONS
+
+         JavaScript automatically places publication cards here.
+         ===================================================== -->
+
+    <section id="publication-list"
+             class="pub-list">
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="site-footer">
+
+    <div class="footer-wrap">
+
+
+        <span>
+
+            ©
+            <span data-current-year></span>
+
+            <span data-config="name">
+
+                Your Name
+
+            </span>
+
+        </span>
+
+
+        <span data-config="footerLine">
+
+            Robotics · Autonomous Systems ·
+            Computer Vision · Embodied AI
+
+        </span>
+
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     PUBLICATION SCRIPT
+     ========================================================= -->
+
+<script>
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    async function () {
+
+
+        /* =====================================================
+           HTML ELEMENTS
+           ===================================================== */
+
+        const publicationList =
+            document.getElementById(
+                "publication-list"
+            );
+
+
+        const loadingMessage =
+            document.getElementById(
+                "publication-loading"
+            );
+
+
+        const publicationSummary =
+            document.getElementById(
+                "publication-summary"
+            );
+
+
+        try {
+
+
+            /* =================================================
+               1. READ THE BIBTEX FILE
+               ================================================= */
+
+            const response =
+                await fetch(
+                    "assets/files/publications.bib"
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Unable to load publications.bib"
+                );
+
+            }
+
+
+            const bibtexText =
+                await response.text();
+
+
+
+            /* =================================================
+               2. PARSE BIBTEX
+               ================================================= */
+
+            const publications =
+                bibtexParse.toJSON(
+                    bibtexText
+                );
+
+
+
+            /* =================================================
+               3. SORT BY YEAR
+
+               Newest publications appear first.
+               ================================================= */
+
+            publications.sort(
+                function (a, b) {
+
+                    const yearA =
+                        parseInt(
+                            a.entryTags.year || 0
+                        );
+
+
+                    const yearB =
+                        parseInt(
+                            b.entryTags.year || 0
+                        );
+
+
+                    return yearB - yearA;
+
+                }
+            );
+
+
+
+            /* =================================================
+               4. REMOVE LOADING MESSAGE
+               ================================================= */
+
+            loadingMessage.style.display =
+                "none";
+
+
+
+            /* =================================================
+               5. PUBLICATION COUNT
+               ================================================= */
+
+            publicationSummary.textContent =
+                publications.length +
+                (
+                    publications.length === 1
+                    ? " publication"
+                    : " publications"
+                );
+
+
+            publicationSummary.style.display =
+                "block";
+
+
+
+            /* =================================================
+               Used to determine when a new year heading
+               should be displayed.
+               ================================================= */
+
+            let currentYear = null;
+
+
+
+            /* =================================================
+               6. CREATE PUBLICATION CARDS
+               ================================================= */
+
+            publications.forEach(
+                function (publication) {
+
+
+                    const tags =
+                        publication.entryTags || {};
+
+
+                    const year =
+                        tags.year || "Other";
+
+
+
+                    /* =========================================
+                       YEAR HEADING
+
+                       Example:
+
+                       2026
+                       -----------------
+
+                       publication cards...
+                       ========================================= */
+
+                    if (year !== currentYear) {
+
+
+                        currentYear = year;
+
+
+                        const yearHeading =
+                            document.createElement(
+                                "h2"
+                            );
+
+
+                        yearHeading.className =
+                            "publication-year";
+
+
+                        yearHeading.textContent =
+                            year;
+
+
+                        publicationList.appendChild(
+                            yearHeading
+                        );
+
+                    }
+
+
+
+                    /* =========================================
+                       DETERMINE PUBLICATION TYPE
+                       ========================================= */
+
+                    const entryType =
+                        (
+                            publication.entryType || ""
+                        ).toLowerCase();
+
+
+                    let typeLabel =
+                        "Publication";
+
+
+                    if (
+                        entryType === "article"
+                    ) {
+
+                        typeLabel =
+                            "Journal Article";
+
+                    }
+
+
+                    else if (
+                        entryType === "inproceedings" ||
+                        entryType === "conference"
+                    ) {
+
+                        typeLabel =
+                            "Conference Paper";
+
+                    }
+
+
+                    else if (
+                        entryType === "incollection"
+                    ) {
+
+                        typeLabel =
+                            "Book Chapter";
+
+                    }
+
+
+                    else if (
+                        entryType === "phdthesis"
+                    ) {
+
+                        typeLabel =
+                            "Ph.D. Thesis";
+
+                    }
+
+
+                    else if (
+                        entryType === "mastersthesis"
+                    ) {
+
+                        typeLabel =
+                            "Master's Thesis";
+
+                    }
+
+
+                    else if (
+                        entryType === "techreport"
+                    ) {
+
+                        typeLabel =
+                            "Technical Report";
+
+                    }
+
+
+                    else if (
+                        entryType === "misc"
+                    ) {
+
+                        typeLabel =
+                            "Manuscript";
+
+                    }
+
+
+
+                    /* =========================================
+                       PUBLICATION CARD
+                       ========================================= */
+
+                    const article =
+                        document.createElement(
+                            "article"
+                        );
+
+
+                    article.className =
+                        "card pub-item";
+
+
+
+                    /* =========================================
+                       META INFORMATION
+
+                       Example:
+                       2026 · Journal Article · Under Review
+                       ========================================= */
+
+                    const metadata =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    metadata.className =
+                        "pub-meta";
+
+
+                    let metaText =
+                        year +
+                        " · " +
+                        typeLabel;
+
+
+                    if (
+                        tags.status &&
+                        tags.status.trim() !== ""
+                    ) {
+
+                        metaText +=
+                            " · " +
+                            cleanBibTex(
+                                tags.status
+                            );
+
+                    }
+
+
+                    metadata.textContent =
+                        metaText;
+
+
+
+                    /* =========================================
+                       TITLE
+                       ========================================= */
+
+                    const title =
+                        document.createElement(
+                            "h2"
+                        );
+
+
+                    title.textContent =
+                        cleanBibTex(
+                            tags.title ||
+                            "Untitled publication"
+                        );
+
+
+
+                    /* =========================================
+                       AUTHORS
+                       ========================================= */
+
+                    const authors =
+                        document.createElement(
+                            "p"
+                        );
+
+
+                    authors.className =
+                        "publication-authors";
+
+
+                    authors.innerHTML =
+                        formatAuthors(
+                            tags.author || ""
+                        );
+
+
+
+                    /* =========================================
+                       JOURNAL / CONFERENCE INFORMATION
+                       ========================================= */
+
+                    const venue =
+                        document.createElement(
+                            "p"
+                        );
+
+
+                    venue.className =
+                        "publication-venue";
+
+
+                    const venueHTML =
+                        createVenueText(
+                            tags
+                        );
+
+
+                    venue.innerHTML =
+                        venueHTML;
+
+
+
+                    /* =========================================
+                       LINKS
+
+                       PDF
+                       DOI
+                       Code
+                       Project
+                       Video
+                       Preprint
+                       ========================================= */
+
+                    const links =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    links.className =
+                        "pub-links";
+
+
+
+                    addPublicationLink(
+                        links,
+                        "PDF",
+                        tags.pdf
+                    );
+
+
+                    addPublicationLink(
+                        links,
+                        "DOI",
+                        normalizeDOI(
+                            tags.doi
+                        )
+                    );
+
+
+                    addPublicationLink(
+                        links,
+                        "Code",
+                        tags.code
+                    );
+
+
+                    addPublicationLink(
+                        links,
+                        "Project",
+                        tags.project
+                    );
+
+
+                    addPublicationLink(
+                        links,
+                        "Video",
+                        tags.video
+                    );
+
+
+                    addPublicationLink(
+                        links,
+                        "Preprint",
+                        tags.preprint
+                    );
+
+
+
+                    /* =========================================
+                       BUILD CARD
+                       ========================================= */
+
+                    article.appendChild(
+                        metadata
+                    );
+
+
+                    article.appendChild(
+                        title
+                    );
+
+
+                    if (
+                        tags.author &&
+                        tags.author.trim() !== ""
+                    ) {
+
+                        article.appendChild(
+                            authors
+                        );
+
+                    }
+
+
+                    if (
+                        venueHTML !== ""
+                    ) {
+
+                        article.appendChild(
+                            venue
+                        );
+
+                    }
+
+
+                    if (
+                        links.children.length > 0
+                    ) {
+
+                        article.appendChild(
+                            links
+                        );
+
+                    }
+
+
+
+                    /* =========================================
+                       ADD CARD TO PAGE
+                       ========================================= */
+
+                    publicationList.appendChild(
+                        article
+                    );
+
+
+                }
+            );
+
+
+
+            /* =================================================
+               NO PUBLICATIONS FOUND
+               ================================================= */
+
+            if (
+                publications.length === 0
+            ) {
+
+
+                const emptyMessage =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                emptyMessage.className =
+                    "callout";
+
+
+                emptyMessage.textContent =
+                    "No publications have been added yet.";
+
+
+                publicationList.appendChild(
+                    emptyMessage
+                );
+
+            }
+
+
+        }
+
+
+        /* =====================================================
+           ERROR HANDLING
+           ===================================================== */
+
+        catch (error) {
+
+
+            console.error(
+                "Publication loading error:",
+                error
+            );
+
+
+            loadingMessage.innerHTML = `
+
+                <strong>
+                    Publications could not be loaded.
+                </strong>
+
+                <br><br>
+
+                Make sure the following file exists:
+
+                <br>
+
+                <code>
+                    assets/files/publications.bib
+                </code>
+
+            `;
+
+        }
+
+
+    }
+);
+
+
+
+/* =============================================================
+   CLEAN BASIC BIBTEX FORMATTING
+   ============================================================= */
+
+function cleanBibTex(text) {
+
+
+    if (!text) {
+
+        return "";
+
+    }
+
+
+    return text
+
+        .replace(
+            /[{}]/g,
+            ""
+        )
+
+        .replace(
+            /~/g,
+            " "
+        )
+
+        .replace(
+            /\s+/g,
+            " "
+        )
+
+        .trim();
+
+}
+
+
+
+/* =============================================================
+   FORMAT AUTHORS
+   ============================================================= */
+
+function formatAuthors(
+    authorString
+) {
+
+
+    if (!authorString) {
+
+        return "";
+
+    }
+
+
+    const authors =
+        authorString.split(
+            /\s+and\s+/i
+        );
+
+
+    return authors
+
+        .map(
+            function (author) {
+
+
+                author =
+                    cleanBibTex(
+                        author.trim()
+                    );
+
+
+                /*
+                 * Automatically bold your name.
+                 *
+                 * Add other forms here if your BibTeX
+                 * sometimes stores your name differently.
+                 */
+
+                const lower =
+                    author.toLowerCase();
+
+
+                if (
+
+                    lower.includes(
+                        "rukesh prajapati"
+                    )
+
+                    ||
+
+                    lower.includes(
+                        "prajapati, rukesh"
+                    )
+
+                ) {
+
+
+                    return (
+                        "<strong>" +
+                        author +
+                        "</strong>"
+                    );
+
+                }
+
+
+                return author;
+
+            }
+        )
+
+        .join(", ");
+
+}
+
+
+
+/* =============================================================
+   CREATE JOURNAL / CONFERENCE CITATION TEXT
+   ============================================================= */
+
+function createVenueText(
+    tags
+) {
+
+
+    const parts = [];
+
+
+    /* ---------------------------------------------------------
+       Journal article
+       --------------------------------------------------------- */
+
+    if (tags.journal) {
+
+        parts.push(
+
+            "<em>" +
+            cleanBibTex(
+                tags.journal
+            ) +
+            "</em>"
+
+        );
+
+    }
+
+
+    /* ---------------------------------------------------------
+       Conference
+       --------------------------------------------------------- */
+
+    else if (tags.booktitle) {
+
+        parts.push(
+
+            "<em>" +
+            cleanBibTex(
+                tags.booktitle
+            ) +
+            "</em>"
+
+        );
+
+    }
+
+
+    /* ---------------------------------------------------------
+       Publisher
+       --------------------------------------------------------- */
+
+    else if (tags.publisher) {
+
+        parts.push(
+
+            "<em>" +
+            cleanBibTex(
+                tags.publisher
+            ) +
+            "</em>"
+
+        );
+
+    }
+
+
+
+    /* ---------------------------------------------------------
+       Volume
+       --------------------------------------------------------- */
+
+    if (tags.volume) {
+
+        parts.push(
+            "vol. " +
+            cleanBibTex(
+                tags.volume
+            )
+        );
+
+    }
+
+
+
+    /* ---------------------------------------------------------
+       Issue
+       --------------------------------------------------------- */
+
+    if (tags.number) {
+
+        parts.push(
+            "no. " +
+            cleanBibTex(
+                tags.number
+            )
+        );
+
+    }
+
+
+
+    /* ---------------------------------------------------------
+       Pages
+       --------------------------------------------------------- */
+
+    if (tags.pages) {
+
+
+        const pages =
+            cleanBibTex(
+                tags.pages
+            )
+
+            .replace(
+                /--/g,
+                "–"
+            );
+
+
+        parts.push(
+            "pp. " +
+            pages
+        );
+
+    }
+
+
+
+    return parts.join(
+        ", "
+    );
+
+}
+
+
+
+/* =============================================================
+   ADD PUBLICATION LINK
+   ============================================================= */
+
+function addPublicationLink(
+    container,
+    label,
+    url
+) {
+
+
+    if (!url) {
+
+        return;
+
+    }
+
+
+    url =
+        cleanBibTex(
+            url
+        );
+
+
+    if (
+        url === ""
+    ) {
+
+        return;
+
+    }
+
+
+
+    const link =
+        document.createElement(
+            "a"
+        );
+
+
+    link.className =
+        "text-chip";
+
+
+    link.href =
+        url;
+
+
+    link.target =
+        "_blank";
+
+
+    link.rel =
+        "noopener noreferrer";
+
+
+    link.textContent =
+        label;
+
+
+    container.appendChild(
+        link
+    );
+
+}
+
+
+
+/* =============================================================
+   NORMALIZE DOI
+
+   Allows either:
+
+   doi = {10.1109/example}
+
+   or
+
+   doi = {https://doi.org/10.1109/example}
+   ============================================================= */
+
+function normalizeDOI(
+    doi
+) {
+
+
+    if (!doi) {
+
+        return "";
+
+    }
+
+
+    doi =
+        cleanBibTex(
+            doi
+        );
+
+
+    if (
+        doi.startsWith(
+            "https://"
+        )
+
+        ||
+
+        doi.startsWith(
+            "http://"
+        )
+    ) {
+
+        return doi;
+
+    }
+
+
+    return (
+        "https://doi.org/" +
+        doi
+    );
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
