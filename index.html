@@ -1,6 +1,11 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Academic robotics research portfolio template"><title>Home | Academic Robotics Portfolio</title><link rel="stylesheet" href="assets/css/style.css"><script defer src="assets/js/site-config.js"></script><script defer src="assets/js/news.js"></script><script defer src="assets/js/research.js"></script><script defer src="assets/js/main.js"></script></head><body><script defer src="assets/js/news-render.js"></script><script defer src="assets/js/research-render.js"></script>
-<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark" data-config="shortName">YN</span><span data-config="name">Your Name</span></a><button class="menu-button" aria-label="Open navigation" aria-expanded="false">☰</button><nav class="site-nav" aria-label="Main navigation"><a class="active" href="index.html">Home</a><a href="research.html">Research</a><a href="publications.html">Publications</a><a href="cv.html">CV</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav></div></header>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Academic robotics research portfolio template"><title>Home | Academic Robotics Portfolio</title><link rel="stylesheet" href="assets/css/style.css?v=platform-carousel-20260928-4"><script defer src="assets/js/site-config.js"></script><script defer src="assets/js/news.js"></script><script defer src="assets/js/research.js"></script><script defer src="assets/js/platforms.js?v=platform-carousel-20260928-4"></script><script defer src="assets/js/main.js"></script><style>
+/* Critical homepage carousel fallback */
+#homepage-platform-track{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:15px;width:100%!important;max-width:100%!important;min-width:0!important;}
+#homepage-platform-track>.platform-slide{display:block;flex:0 0 var(--platform-card-width,220px);width:var(--platform-card-width,220px);min-width:var(--platform-card-width,220px);max-width:var(--platform-card-width,220px);}
+#homepage-platform-slider{overflow:hidden!important;width:100%!important;max-width:100%!important;min-width:0!important;position:relative;}
+</style></head><body><script defer src="assets/js/news-render.js"></script><script defer src="assets/js/research-render.js"></script><script defer src="assets/js/platforms-render.js?v=platform-carousel-20260928-4"></script>
+<header class="site-header"><div class="nav-wrap"><a class="brand" href="index.html"><span class="brand-mark" data-config="shortName">YN</span><span data-config="name">Your Name</span></a><button class="menu-button" aria-label="Open navigation" aria-expanded="false">☰</button><nav class="site-nav" aria-label="Main navigation"><a class="active" href="index.html">Home</a><a href="research.html">Research</a><a href="platforms.html">Platforms</a><a href="publications.html">Publications</a><a href="cv.html">CV</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav></div></header>
 <main>
   <div class="home-grid">
     <aside class="stack">
@@ -155,6 +160,24 @@
     </div>
 
 </section>
+
+
+      <section class="card">
+
+        <div class="card-body">
+
+          <div class="section-header">
+            <h2>Platforms &amp; Tools</h2>
+            <a href="platforms.html">View all →</a>
+          </div>
+
+          <div class="platform-slider" id="homepage-platform-slider" aria-label="Platforms and tools">
+            <div class="platform-track" id="homepage-platform-track"></div>
+          </div>
+
+        </div>
+
+      </section>
 
       <section class="card">
 
