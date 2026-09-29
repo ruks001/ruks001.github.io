@@ -136,14 +136,31 @@ function renderFullPlatforms() {
     card.className = "card platform-detail-card";
     card.id = item.id;
 
+    // Convert \n\n in the description into separate paragraphs
+    const descriptionHTML = String(item.description || "")
+      .split(/\n\s*\n/)
+      .map(function (paragraph) {
+        return `<p>${escapePlatformHTML(paragraph.trim())}</p>`;
+      })
+      .join("");
+
     card.innerHTML = `
       <div class="platform-detail-image-wrap">
-        <img class="platform-detail-image" src="${escapePlatformHTML(item.image)}" alt="${escapePlatformHTML(item.name)}">
+        <img
+          class="platform-detail-image"
+          src="${escapePlatformHTML(item.image)}"
+          alt="${escapePlatformHTML(item.name)}"
+        >
       </div>
+
       <div class="platform-detail-content">
-        <span class="platform-category">${escapePlatformHTML(item.category)}</span>
+        <span class="platform-category">
+          ${escapePlatformHTML(item.category)}
+        </span>
+
         <h2>${escapePlatformHTML(item.name)}</h2>
-        <p>${escapePlatformHTML(item.description)}</p>
+
+        ${descriptionHTML}
       </div>
     `;
 

@@ -531,10 +531,14 @@ main {
 }
 
 .platform-detail-content p {
-  margin: 0;
+  margin: 0 0 16px;
   color: var(--muted);
   line-height: 1.75;
   text-align: justify;
+}
+
+.platform-detail-content p:last-child {
+  margin-bottom: 0;
 }
 
 @media (max-width: 900px) {
