@@ -30,11 +30,19 @@ document.addEventListener("DOMContentLoaded", function () {
         homeResearch.forEach(function (item) {
 
             const card =
-                document.createElement("article");
+                document.createElement("a");
 
 
             card.className =
-                "mini-card";
+                "mini-card research-home-card";
+
+            card.href =
+                `research.html#${encodeURIComponent(item.id)}`;
+
+            card.setAttribute(
+            "aria-label",
+            `View ${item.title}`
+            );
 
 
             card.innerHTML = `
