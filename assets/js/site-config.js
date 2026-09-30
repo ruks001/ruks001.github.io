@@ -10,7 +10,7 @@ window.SITE_CONFIG = {
   affiliation: "West Virginia University",
   location: "Morgantown, WV",
   email: "prajapati.rukesh101@gmail.com",
-  github: "https://github.com/yourusername",
+  github: "https://github.com/ruks001",
   linkedin: "https://www.linkedin.com/in/rukesh-prajapati-611161186/",
   scholar: "https://scholar.google.com/citations?user=7Urun_wAAAAJ&hl=en&authuser=2",
   cvFile: "assets/files/Rukesh_cv.pdf",
